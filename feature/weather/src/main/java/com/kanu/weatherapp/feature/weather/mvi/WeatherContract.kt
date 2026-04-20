@@ -5,14 +5,24 @@ import com.kanu.weatherapp.core.ui.mvi.MviSideEffect
 import com.kanu.weatherapp.core.ui.mvi.MviState
 import com.kanu.weatherapp.domain.model.WeatherInfo
 
-data class WeatherState(
+data class CityWeather(
+    val cityName: String,
+    val lat: Double,
+    val long: Double,
     val weatherInfo: WeatherInfo? = null,
+    val isLoading: Boolean = false,
+    val error: String? = null
+)
+
+data class WeatherState(
+    val weatherCards: List<CityWeather> = emptyList(),
     val isLoading: Boolean = false,
     val error: String? = null
 ) : MviState
 
 sealed class WeatherIntent : MviIntent {
-    data class LoadWeatherInfo(val lat: Double, val long: Double) : WeatherIntent()
+    data class LoadWeatherInfo(val lat: Double, val long: Double, val cityName: String? = null) : WeatherIntent()
+    data class LoadCityWeather(val index: Int) : WeatherIntent()
     object RefreshWeather : WeatherIntent()
 }
 

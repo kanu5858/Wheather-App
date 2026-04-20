@@ -13,13 +13,13 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kanu.weatherapp.core.ui.components.GlassCard
-import com.kanu.weatherapp.feature.weather.mvi.WeatherState
+import com.kanu.weatherapp.feature.weather.mvi.CityWeather
 import com.kanu.weatherapp.feature.weather.util.WeatherIconMapper
 import kotlin.math.roundToInt
 
 @Composable
 fun WeatherCard(
-    state: WeatherState,
+    state: CityWeather,
     modifier: Modifier = Modifier
 ) {
     state.weatherInfo?.currentWeatherData?.let { data ->
@@ -32,11 +32,23 @@ fun WeatherCard(
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(
-                    text = "Today ${data.time.format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"))}",
-                    modifier = Modifier.align(Alignment.End),
-                    color = Color.White
-                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    state.cityName?.let {
+                        Text(
+                            text = it,
+                            color = Color.White,
+                            fontSize = 20.sp
+                        )
+                    }
+                    Text(
+                        text = "Today ${data.time.format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"))}",
+                        color = Color.White
+                    )
+                }
                 Spacer(modifier = Modifier.height(16.dp))
                 Image(
                     painter = painterResource(id = WeatherIconMapper.getIconRes(data.weatherType)),
