@@ -1,5 +1,6 @@
 package com.kanu.weatherapp.feature.weather.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -8,9 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kanu.weatherapp.domain.model.WeatherData
+import com.kanu.weatherapp.feature.weather.util.WeatherIconMapper
 import java.time.format.DateTimeFormatter
 
 @Composable
@@ -25,21 +28,24 @@ fun HourlyForecast(
             .padding(horizontal = 16.dp)
     ) {
         Text(
-            text = "Today",
+            text = "Hourly Forecast",
             fontSize = 20.sp,
             color = textColor
         )
         Spacer(modifier = Modifier.height(16.dp))
-        LazyRow(content = {
-            items(weatherData) { data ->
-                HourlyWeatherDisplay(
-                    weatherData = data,
-                    modifier = Modifier
-                        .height(100.dp)
-                        .padding(horizontal = 16.dp)
-                )
-            }
-        })
+        LazyRow(
+            contentPadding = PaddingValues(horizontal = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            content = {
+                items(weatherData) { data ->
+                    HourlyWeatherDisplay(
+                        weatherData = data,
+                        modifier = Modifier
+                            .width(80.dp)
+                            .height(120.dp)
+                    )
+                }
+            })
     }
 }
 
@@ -53,17 +59,22 @@ fun HourlyWeatherDisplay(
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.SpaceEvenly
     ) {
         Text(
             text = formattedTime,
-            color = Color.LightGray
+            color = Color.LightGray,
+            fontSize = 12.sp
         )
-        // Image Placeholder
+        Image(
+            painter = painterResource(id = WeatherIconMapper.getIconRes(weatherData.weatherType)),
+            contentDescription = null,
+            modifier = Modifier.size(40.dp)
+        )
         Text(
             text = "${weatherData.temperatureCelsius}°C",
             color = textColor,
-            fontSize = 18.sp
+            fontSize = 16.sp
         )
     }
 }

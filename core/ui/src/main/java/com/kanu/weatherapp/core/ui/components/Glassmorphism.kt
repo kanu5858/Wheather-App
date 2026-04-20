@@ -19,8 +19,7 @@ import com.kanu.weatherapp.core.ui.theme.GlassWhite
 @Composable
 fun GlassCard(
     modifier: Modifier = Modifier,
-    cornerRadius: Dp = 20.dp,
-    blurRadius: Dp = 15.dp,
+    cornerRadius: Dp = 24.dp,
     content: @Composable BoxScope.() -> Unit
 ) {
     Box(
@@ -29,22 +28,21 @@ fun GlassCard(
             .background(
                 Brush.verticalGradient(
                     colors = listOf(
-                        GlassWhite.copy(alpha = 0.3f),
-                        GlassWhite.copy(alpha = 0.1f)
+                        Color.White.copy(alpha = 0.15f),
+                        Color.White.copy(alpha = 0.05f)
                     )
                 )
             )
             .border(
-                width = 1.dp,
+                width = 1.5.dp,
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        GlassBorder.copy(alpha = 0.5f),
-                        Color.Transparent
+                        Color.White.copy(alpha = 0.3f),
+                        Color.White.copy(alpha = 0.05f)
                     )
                 ),
                 shape = RoundedCornerShape(cornerRadius)
             )
-            .blur(blurRadius)
     ) {
         content()
     }
