@@ -1,14 +1,11 @@
 package com.kanu.weatherapp.domain.model
 
-import androidx.annotation.DrawableRes
-
 /**
  * Weather codes based on WMO Weather interpretation codes (WW)
  * https://open-meteo.com/en/docs
  */
 sealed class WeatherType(
-    val weatherDesc: String,
-    //@DrawableRes val iconRes: Int // Note: We'll add iconRes once we have assets in core:ui
+    val weatherDesc: String
 ) {
     object ClearSky : WeatherType("Clear sky")
     object MainlyClear : WeatherType("Mainly clear")

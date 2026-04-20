@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kanu.weatherapp.core.ui.components.GlassCard
 import com.kanu.weatherapp.feature.weather.mvi.WeatherState
+import com.kanu.weatherapp.feature.weather.util.WeatherIconMapper
 import kotlin.math.roundToInt
 
 @Composable
@@ -37,12 +38,11 @@ fun WeatherCard(
                     color = Color.White
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                // Placeholder for Weather Icon
-                // Image(
-                //     painter = painterResource(id = data.weatherType.iconRes),
-                //     contentDescription = null,
-                //     modifier = Modifier.width(200.dp)
-                // )
+                Image(
+                    painter = painterResource(id = WeatherIconMapper.getIconRes(data.weatherType)),
+                    contentDescription = null,
+                    modifier = Modifier.width(200.dp)
+                )
                 Text(
                     text = "${data.weatherType.weatherDesc}",
                     fontSize = 20.sp,
