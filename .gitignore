@@ -1,15 +1,28 @@
+# --- IDE & System Files ---
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+*.iws
+.shelf/
+out/
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+Thumbs.db
+*.log
+
+# --- Gradle & Build Artifacts ---
+.gradle/
+build/
+/*/build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# --- Local & Sensitive Configuration ---
+# Never push these to GitHub
 local.properties
+google-services.json
+*.jks
+*.keystore
+
+# --- Professional Extras ---
+.navigation/
+assetWizardSettings.xml
