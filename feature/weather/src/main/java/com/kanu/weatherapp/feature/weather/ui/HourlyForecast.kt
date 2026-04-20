@@ -35,7 +35,7 @@ fun HourlyForecast(
         Spacer(modifier = Modifier.height(16.dp))
         LazyRow(
             contentPadding = PaddingValues(horizontal = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
             content = {
                 items(weatherData) { data ->
                     HourlyWeatherDisplay(
